@@ -1,4 +1,6 @@
 class FilmsController < ApplicationController
+  before_action :find_film, only: [:edit, :update, :destroy, :show]
+
   def index
     @films = Film.all
   end
@@ -18,11 +20,9 @@ class FilmsController < ApplicationController
   end
 
   def edit
-    @film = Film.find(params[:id])
   end
 
   def update
-    @film = Film.find(params[:id])
     if @film.update films_params
       p "SE ACTUALIZO SATISFACTORIAMENTE"
       redirect_to films_path
@@ -33,17 +33,19 @@ class FilmsController < ApplicationController
   end
 
   def destroy
-    @film = Film.find(params[:id])
     @film.destroy
     redirect_to films_path
   end
 
   def show
-    @film = Film.find(params[:id])
   end
 
   private
   def films_params
     params.require(:film).permit(:title,:year,:rating,:description)
+  end
+
+  def find_film
+    @film = Film.find(params[:id])
   end
 end
