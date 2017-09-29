@@ -1,0 +1,22 @@
+<h1 class="text-center">Pelicula</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Titulo</th>
+      <th>Año</th>
+      <th>Puntaje (0-5)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @films.each do |film| %>
+      <tr>
+        <td><%= film.title %></td>
+        <td><%= film.year %></td>
+        <td><%= film.rating %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<a href="" class="btn btn-success">Añadir pelicula</a> 
