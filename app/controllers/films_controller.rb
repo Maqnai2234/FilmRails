@@ -21,6 +21,17 @@ class FilmsController < ApplicationController
     @film = Film.find(params[:id])
   end
 
+  def update
+    @film = Film.find(params[:id])
+    if @film.update films_params
+      p "SE ACTUALIZO SATISFACTORIAMENTE"
+      redirect_to films_path
+    else
+      render :edit
+      p "NO SE ACTUALIZO"
+    end
+  end
+
   private
   def films_params
     params.require(:film).permit(:title,:year,:rating,:description)
